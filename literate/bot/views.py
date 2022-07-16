@@ -8,30 +8,32 @@ from .models import help, funchat, courses
 # Create your views here.
 
 def check_command(request):
-    command = request.POST['command']
-    list = []
-    list = command.split()
-    request.POST._mutable = True
-    request.POST['command'] = command
-    request.POST._mutable = False
-    if list[0] == "@start":
-        return start_bot
-    elif list[0] == "@end":
-        return end_bot 
-    elif list[0] == "@fun":
-        return fun_chat
-    elif list[0] == "@search":
-        return search_content
-    elif list[0] == "@help":
-        return help_command
-    else :
-        return JsonResponse({"message":"get the help of @help"})
+    if request.method == "POST":
+        command = request.POST['comd']
+        list = []
+        list = command.split()
+        request.POST._mutable = True
+        request.POST['command'] = command
+        request.POST._mutable = False
+        if list[0] == "@start":
+            return start_bot
+        elif list[0] == "@end":
+            return end_bot 
+        elif list[0] == "@fun":
+            return fun_chat
+        elif list[0] == "@search":
+            return search_content
+        elif list[0] == "@help":
+            return help_command(request)
+        else :
+            return JsonResponse({"error":False,"code":0, "message":"get the help of @help"})
+    else: return
 
 def start_bot(request):
     if session['auth'] is None:
         return JsonResponse({"message": "User needs to login for using this functionallity"})
     else:
-        return JsonResponse({"message":"Hello", "message1":"Hope you are doing fine. How can I help you?"})
+        return JsonResponse({"error": False, "message":"Hello", "message1":"Hope you are doing fine. How can I help you?"})
         
 
 def end_bot(request):
@@ -71,8 +73,9 @@ def search_content(request):
     return
 
 def help_command(request):
-    help_center = help.objects.all()
-    return JsonResponse({"help": help_center})
+    help_center1 = help.objects.values().all()
+    help_center = list(help_center1)
+    return JsonResponse({"code":1, "help": help_center})
 
           
           

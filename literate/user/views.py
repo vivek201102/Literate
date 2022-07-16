@@ -4,11 +4,12 @@ from requests import session
 from .models import user
 
 # Create your views here.
-
+def index(request):
+    return render(request, "home.html")
 
 def create(request):
     username = request.POST['username']
-    
+
     user_data = user.objects.filter(username = username).first()
     if user_data is None:
         return JsonResponse({"message":"Username is already taken"})
