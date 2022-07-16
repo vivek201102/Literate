@@ -8,6 +8,7 @@ from .models import user
 
 def create(request):
     username = request.POST['username']
+    
     user_data = user.objects.filter(username = username).first()
     if user_data is None:
         return JsonResponse({"message":"Username is already taken"})
