@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from email.encoders import encode_7or8bit
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
@@ -80,14 +79,8 @@ def help_command(request):
     return JsonResponse({"code":1, "help": help_center})
 
           
-=======
-from email.encoders import encode_7or8bit
-from django.http import JsonResponse
-from django.shortcuts import redirect, render
-from requests import session
-import random
-from django.db.models import Q
-from .models import help, funchat, courses 
+
+
 # Create your views here.
 
 def check_command(request):
@@ -162,6 +155,4 @@ def help_command(request):
     return JsonResponse({"code":1, "help": help_center})
 
           
-          
-      
->>>>>>> acc2caff240fd0cc1f6cd8a7d9d7051ec5d3df6b
+        

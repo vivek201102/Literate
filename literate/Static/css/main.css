@@ -1,0 +1,17 @@
+*{
+    box-sizing:border-box;
+    margin: 0%;
+    padding: 0%;
+    overflow: hidden;
+    font-family: 'Raleway', sans-serif;
+}
+
+.front-length-footer {
+    height: 50vh;
+}
+
+.front-line-through{
+    text-decoration: line-through;
+}
+
+@import "~bootstrap-icons/font/bootstrap-icons.css";
