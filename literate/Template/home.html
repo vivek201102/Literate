@@ -80,8 +80,22 @@
         
         success:function(response){
 
+          if(response.code == -1)
+          {
+            console.log("Hello")
+            var msg = response.message;
+            div_message.innerHTML += `<h2 style="color:red;">${msg}</h2><a href="/signin">Signin</a>`;
+          }
+
+          else if(code = 5)
+          {
+            var msg = response.message;
+            var msg1 = response.message1;
+            div_message.innerHTML += `<h7>${msg}</h7><br><h7>${msg1}</h7>`;
+          }
+
           //Not getting data
-          if(response.code == 0)
+          else if(response.code == 0)
           {
             var message = response.message;
             var inst = response.instruction;
