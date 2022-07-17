@@ -31,14 +31,17 @@ def check_command(request):
     else: return
 
 def start_bot(request):
-    if session['auth'] is None:
-        return JsonResponse({"message": "User needs to login for using this functionallity"})
+    print(request.session['user_info'])
+    if request.session['user_info'] == "undefined":
+        print("Hello")
+        return JsonResponse({"error": False,"code":-1, "message": "User needs to login for using this functionallity"})
     else:
-        return JsonResponse({"error": False, "message":"Hello", "message1":"Hope you are doing fine. How can I help you?"})
+        return JsonResponse({"error": False, "code":5, "message":"Hello", "message1":"Hope you are doing fine. How can I help you?"})
         
 
 def end_bot(request):
-    return redirect("/")
+    request.session['user_info'] = 'undefined'
+    return redirect("/signin")
 
 def fun_chat(request):
     print("Hello")
