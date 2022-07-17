@@ -1,5 +1,5 @@
-# Literate
-Literate app is a platform available for students where they can access the Chatbot for asking different suggestions for new study resources.
+# Il-literate
+Il-literate app is a platform available for students where they can access the Chatbot for asking different suggestions for new study resources.
 We created this app using HTML, CSS, Bootstrap at Frontend side and Django, MySQL at the backend side.
 
 To run Project:
