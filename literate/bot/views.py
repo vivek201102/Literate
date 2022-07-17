@@ -10,23 +10,24 @@ from .models import help, funchat, courses
 def check_command(request):
     if request.method == "POST":
         command = request.POST['comd']
+        
         list = []
         list = command.split()
         request.POST._mutable = True
         request.POST['command'] = command
         request.POST._mutable = False
         if list[0] == "@start":
-            return start_bot
+            return start_bot(request)
         elif list[0] == "@end":
-            return end_bot 
+            return end_bot(request)
         elif list[0] == "@fun":
-            return fun_chat
+            return fun_chat(request)
         elif list[0] == "@search":
-            return search_content
+            return search_content(request)
         elif list[0] == "@help":
             return help_command(request)
         else :
-            return JsonResponse({"error":False,"code":0, "message":"get the help of @help"})
+            return JsonResponse({"error":False,"code":0, "instruction":command , "message":"get the help of @help"})
     else: return
 
 def start_bot(request):
@@ -40,37 +41,34 @@ def end_bot(request):
     return redirect("/")
 
 def fun_chat(request):
+    print("Hello")
     comm = request.POST['command']
-    command = comm[5,]
+    command = comm[5:]
     answer_data = funchat.objects.filter(Q(question1__icontains = command) |  Q(question2__icontains = command) | Q(question3__icontains = command) | Q(question4__icontains = command) | Q(question5__icontains = command))
     answer = []
 
     if answer_data is None:
-        return JsonResponse({"ans":"Sorry I did not get"})
+        return JsonResponse({"error":False,"code":0,"instruction":command ,"message":"Sorry I did not get"})
     else:
         for i in answer_data:
             answer.append(i.answer1)
             answer.append(i.answer2)
             answer.append(i.answer3)
         res = random.choice(answer)
-        return JsonResponse({"ans":res}) 
+        return JsonResponse({"error":False, "code":3,"instruction":command ,"ans":res}) 
 
 def search_content(request):
-    comm = request.POST[command]
-    command = comm[7,]
+    comm = request.POST["command"]
+    command = comm[8:]
     answer = []
-    answer_data = courses.objects.filter(Q(tag1__icontains = command) |  Q(tag2__icontains = command) | Q(tag3__icontains = command))
-    if answer_data is None:
-        return JsonResponse({"message":"No courses found as per your requirement"})
+    answer_data = courses.objects.values().filter(Q(tag1__icontains = command) |  Q(tag2__icontains = command) | Q(tag3__icontains = command))
+    if len(answer_data) == 0:
+        return JsonResponse({"code":0, "instruction":command , "message":"No courses found as per your requirement"})
     else:
-        for i in answer_data:
-            answer.append(i)
-        
-        return JsonResponse({"message":"data found", "answer": answer})
+        answer = list(answer_data)
+        return JsonResponse({"code":2,"instruction":command ,"message":"data found", "answer": answer})
 
 
-
-    return
 
 def help_command(request):
     help_center1 = help.objects.values().all()
