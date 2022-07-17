@@ -17,7 +17,7 @@ Basic Commands of Bot:<br>
 <t> @end - To end your session.<br>
   
 
-Team Members - Backend Developers:  Vivek Patel, 
+Team Members - <br><t>Backend Developers:  Vivek Patel, 
                                     Drashti Patel <br>
                <t>Frontend Developers: Kushal Patel, 
                                     Manushi Dagli
