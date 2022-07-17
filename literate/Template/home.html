@@ -79,13 +79,18 @@
             },
         
         success:function(response){
+
+          //Not getting data
           if(response.code == 0)
           {
             var message = response.message;
-            div_message.innerHTML += `<h3>${input_value}<h2 style="color:red;">${message}</h2>`;
-            input_field.innerHTML = '';
+            var inst = response.instruction;
+            var msg = input_value; 
+            div_message.innerHTML += `<h3>${inst}</h3><h2 style="color:red;">${message}</h2>`;
+            
           }
 
+          //help command
           else if(response.code == 1)
           {
             var message = response.message;
@@ -94,8 +99,40 @@
             help_command.forEach(element => {
               div_message.innerHTML += `<h7 style="color:red;">${element.command}:</h7><h7> ${element.description}</h7><br>`;
             });
-            input_field.innerHTML = '';
+           
           }
+
+
+          //search content
+          else if(response.code == 2)
+          {
+          
+            var answers = response.answer;
+            var inst = response.instruction;
+
+            div_message.innerHTML += `<h3>${inst}</h3>`
+            answers.forEach(element => {
+              div_message.innerHTML += `<h7 style="color:red;">Course Name</h7><h7>${element.course_name}</h7><br><h7 style="color:red;">URL</h7><h7><a href="${element.url}">${element.url}</a></h7><br><h7 style="color:red;">Platform</h7><h7>${element.platform}</h7><br><h7 style="color:red;">Offered By</h7><h7>${element.instructor}</h7><br><h7 style="color:red;">Price</h7><h7>${element.price}</h7><br><br>`;
+            });
+          }
+
+
+
+
+          //fun_chat
+          else if(response.code == 3)
+          {
+            var answer = response.ans;
+            var inst = response.instruction;
+            div_message.innerHTML += `<h3>${inst}</h3>`
+            div_message.innerHTML += `<h4>${answer}</h4>`
+
+
+          }
+
+
+          //Making input field null
+          input_field.value = '';
         },
         error: function(response){}
      });
