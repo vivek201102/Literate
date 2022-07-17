@@ -10,7 +10,7 @@ finaly, you can run project in your pc using local server.
 
 Team Members - Backend Developers:  Vivek Patel
                                     Drashti Patel <br>
-               Frontend Developers: Kushal Patel
+               <t>Frontend Developers: Kushal Patel
                                     Manushi Dagli                    
 
 
