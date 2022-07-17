@@ -1,5 +1,6 @@
+import email
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from requests import session
 from .models import user
 
@@ -7,30 +8,37 @@ from .models import user
 def index(request):
     return render(request, "home.html")
 
-def create(request):
+def register(request):
     username = request.POST['username']
 
     user_data = user.objects.filter(username = username).first()
-    if user_data is None:
+    if user_data is not None:
         return JsonResponse({"message":"Username is already taken"})
     else:
         name = request.POST['name']
         email = request.POST['email']
         contact = request.POST['contact']
         password = request.POST['password']
-        user_info = user.objects.create(name = name, email = email, contact = contact, username = username, password = password)
+        user_info = user.objects.create(name = name, email = email, mobile = contact, username = username, password = password)
         user_info.save()
         return JsonResponse({"user":user_info, "message":"user registered successfully"})
 
 
-def login(request):
-    username = request.POST['username']
+def auth(request):
+    email = request.POST['email']
     password = request.POST['password']
-    user_data = user.objects.filter(username = username, password = password)
+    user_data = user.objects.filter(email = email, password = password).first()
     if user_data is None:
-        return JsonResponse({"message":"User not verified"})
+        print("False")
+        return render(request, "signin.html", {"message":"Email or Password is incorrect"})
     else:
-        session['auth'] = user_data
-        return JsonResponse({"message":"User varified"})
+        request.session['user_info'] = user_data.email
+        return redirect('/')
 
+
+def signup(request):
+    return render(request, "signup.html")
+
+def signin(request):
+    return render(request, "signin.html")
 

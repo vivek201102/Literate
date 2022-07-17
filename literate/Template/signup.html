@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,200;0,300;0,400;0,600;0,700;1,300&display=swap"
+        rel="stylesheet">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="../static/css/signin.css">
+    <title>Il.Literate | SignIn</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row front-full-length">
+            <div class="col-6 align-content-center bg-dark d-flex justify-content-center">
+                <img src="../static/img/Education-pana.png" style="width:70%; height:80%" alt="Img" class="mt-5">
+            </div>
+            <div class="col-6 align-content-center d-flex justify-content-center mx-auto mt-5">
+                <div class="card border border-2 border-dark" style="width: 28rem;height:35rem">
+                    <div class="card-header text-center bg-primary mb-3 border-bottom border-2 border-dark">
+                        <h2><span class="front-line-through">IL</span>.Literate</h2>
+                    </div>
+                    <div class="mt-0 ms-3 me-3">
+                        <form action="/register" method="POST">
+                            {%csrf_token%}
+                            <div class="mb-2">
+                                <label for="exampleInputPassword1" class="form-label mt-1"><b>Name</b></label>
+                                <input type="text" class="form-control" id="exampleInputPassword1" name="name">
+                            </div>
+                            <div class="mb-2">
+                                <label for="exampleInputEmail1" class="form-label"><b>Email address</b></label>
+                                <input type="email" class="form-control" name="email" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp">
+                            </div>
+                            <div class="mb-2">
+                                <label for="exampleInputPassword1" class="form-label mt-1"><b>Username</b></label>
+                                <input type="text" class="form-control" name="username" id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-2">
+                                <label for="exampleInputPassword1" class="form-label mt-1"><b>Password</b></label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                            </div>
+                            <div class="mb-2">
+                                <label for="exampleInputPassword1" class="form-label mt-1"><b>Contact</b></label>
+                                <input type="text" class="form-control" id="exampleInputPassword1" name="contact">
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3" style="width:100%">Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
