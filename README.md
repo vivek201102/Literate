@@ -8,10 +8,23 @@ For database you will have to download mysql and then donload text file provided
 Now you have to make migrations.
 finaly, you can run project in your pc using local server.
 
+
+Basic Comaands of Bot:
+<t> @start - To start  the conversation with bot.<br>
+<t> @help - To get help for the bot commands.<br>
+<t> @search - To search resources according to subject.<br>
+<t> @fun - TO do simple conversation with bot.<br>
+<t> @end - To end your session.<br>
+  
+
 Team Members - Backend Developers:  Vivek Patel
                                     Drashti Patel <br>
                <t>Frontend Developers: Kushal Patel
-                                    Manushi Dagli                    
+                                    Manushi Dagli
+ 
+  
+ 
+  
 
 
 
